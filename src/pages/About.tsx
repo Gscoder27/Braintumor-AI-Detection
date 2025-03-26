@@ -1,6 +1,7 @@
+
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Lightbulb, Microscope, Users, Zap } from "lucide-react";
+import { Award, Brain, LineChart, Lightbulb, Microscope, Users, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const About = () => {
@@ -23,24 +24,68 @@ const About = () => {
       {/* Mission Section */}
       <section className="py-16 bg-white">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex items-center justify-center mb-8">
-              <div className="p-3 rounded-full bg-primary/10">
-                <Lightbulb size={28} className="text-primary" />
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-3">Our Mission</h2>
+              <div className="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-16">
+              <p className="text-xl text-center italic font-medium mb-6">
+                "To harness the power of artificial intelligence in order to revolutionize brain tumor detection,
+                making accurate diagnosis more accessible and efficient for healthcare providers worldwide."
+              </p>
+              <div className="flex justify-center">
+                <div className="p-3 rounded-full bg-blue-100">
+                  <Brain size={28} className="text-primary" />
+                </div>
               </div>
             </div>
             
-            <h2 className="text-3xl font-bold text-center mb-6">Our Mission</h2>
-            
-            <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
+            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
               At NeuroDetect, we're on a mission to transform healthcare through the application of cutting-edge artificial intelligence. Our platform is designed to assist medical professionals in detecting brain tumors faster and with greater accuracy.
             </p>
             
-            <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {/* Innovation Card */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 text-center">
+                <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                  <Brain size={36} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Innovation</h3>
+                <p className="text-foreground/70">
+                  Pushing the boundaries of what's possible with medical AI technology.
+                </p>
+              </div>
+              
+              {/* Excellence Card */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 text-center">
+                <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                  <Award size={36} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Excellence</h3>
+                <p className="text-foreground/70">
+                  Committed to the highest standards in healthcare technology.
+                </p>
+              </div>
+              
+              {/* Impact Card */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 text-center">
+                <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                  <LineChart size={36} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Impact</h3>
+                <p className="text-foreground/70">
+                  Making a meaningful difference in patient outcomes worldwide.
+                </p>
+              </div>
+            </div>
+            
+            <p className="text-lg text-foreground/80 leading-relaxed">
               We understand the critical importance of early detection in improving patient outcomes. By leveraging deep learning algorithms and computer vision technology, we've created a tool that can analyze MRI scans and identify potential tumors with a high degree of confidence.
             </p>
             
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className="text-lg text-foreground/80 mt-6 leading-relaxed">
               Our goal is not to replace healthcare professionals, but to provide them with powerful tools that enhance their diagnostic capabilities and enable them to focus more of their valuable time on patient care.
             </p>
           </div>
