@@ -10,12 +10,32 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
+import ScanHistory from "./pages/ScanHistory";
 import NotFound from "./pages/NotFound";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCurrentUser } from "./lib/supabase";
 
 const App = () => {
   // Create QueryClient inside the component function
   const [queryClient] = useState(() => new QueryClient());
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { user } = await getCurrentUser();
+      setUser(user);
+      setIsLoading(false);
+    };
+    
+    checkUser();
+  }, []);
+
+  if (isLoading) {
+    return <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full" />
+    </div>;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -30,6 +50,7 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/scan-history" element={<ScanHistory />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

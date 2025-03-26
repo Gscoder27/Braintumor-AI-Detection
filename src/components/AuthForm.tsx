@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
+import { signIn, signUp } from "@/lib/supabase";
+import { useNavigate } from "react-router-dom";
 
 type AuthMode = "login" | "register";
 
@@ -14,6 +16,7 @@ const AuthForm = () => {
   const [mode, setMode] = useState<AuthMode>("login");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
     name: "",
@@ -37,19 +40,35 @@ const AuthForm = () => {
     setLoading(true);
     
     try {
-      // Simulate authentication delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // This would be replaced with actual authentication code
       if (mode === "login") {
-        toast.success("Login successful!");
-        window.location.href = "/dashboard";
+        const { data, error } = await signIn(formData.email, formData.password);
+        
+        if (error) {
+          throw error;
+        }
+        
+        if (data?.user) {
+          toast.success("Login successful!");
+          navigate("/dashboard");
+        }
       } else {
-        toast.success("Registration successful! Please login.");
+        // Register
+        const { data, error } = await signUp(
+          formData.email, 
+          formData.password,
+          formData.name
+        );
+        
+        if (error) {
+          throw error;
+        }
+        
+        toast.success("Registration successful! Please check your email to confirm your account.");
         setMode("login");
       }
-    } catch (error) {
-      toast.error("Authentication failed. Please try again.");
+    } catch (error: any) {
+      console.error("Authentication error:", error);
+      toast.error(error.message || "Authentication failed. Please try again.");
     } finally {
       setLoading(false);
     }
