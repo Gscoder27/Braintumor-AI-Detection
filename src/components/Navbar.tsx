@@ -59,8 +59,8 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  "text-foreground/80 hover:text-primary transition-colors",
-                  location.pathname === link.to && "text-primary font-medium"
+                  "text-foreground/80 hover:text-primary transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100",
+                  location.pathname === link.to && "text-primary font-medium after:scale-x-100"
                 )}
               >
                 {link.label}
@@ -72,7 +72,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <Link to="/login">
-              <Button variant="outline">Login</Button>
+              <Button variant="glow">Login</Button>
             </Link>
           </div>
           
@@ -104,15 +104,15 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  "py-2 px-4 rounded-md hover:bg-secondary transition-colors",
-                  location.pathname === link.to && "bg-secondary font-medium"
+                  "py-2 px-4 rounded-md hover:bg-secondary transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100",
+                  location.pathname === link.to && "bg-secondary font-medium after:scale-x-100"
                 )}
               >
                 {link.label}
               </Link>
             ))}
             <Link to="/login" className="mt-2">
-              <Button className="w-full">Login</Button>
+              <Button variant="glow" className="w-full">Login</Button>
             </Link>
           </nav>
         </div>
