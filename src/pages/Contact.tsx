@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -288,7 +289,7 @@ const ContactPage = () => {
               ].map((faq, index) => (
                 <div 
                   key={index} 
-                  className="glass rounded-xl p-6 animate-slideUp"
+                  className="glass rounded-xl p-6 animate-slideUp transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
