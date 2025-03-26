@@ -157,7 +157,8 @@ const Index = () => {
             ].map((testimonial, index) => (
               <div 
                 key={index}
-                className="glass rounded-xl p-8 shadow-sm animate-slideUp"
+                className="glass rounded-xl p-8 shadow-sm transition-all duration-300 
+                hover:shadow-md hover:translate-y-[-5px] animate-slideUp"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <svg className="h-8 w-8 text-primary/40 mb-4" fill="currentColor" viewBox="0 0 32 32">
