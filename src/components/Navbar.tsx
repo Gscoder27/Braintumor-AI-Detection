@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   
-  // Track scroll position for navbar appearance
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -25,7 +23,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
@@ -44,7 +41,6 @@ const Navbar = () => {
     )}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-primary/10 p-2 rounded-full">
               <Brain className="h-6 w-6 text-primary" />
@@ -52,7 +48,6 @@ const Navbar = () => {
             <span className="font-bold text-xl text-foreground">NeuroDetect</span>
           </Link>
           
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -68,20 +63,19 @@ const Navbar = () => {
             ))}
           </nav>
           
-          {/* Right side - Theme Toggle and Login */}
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <Link to="/login">
               <Button 
                 variant="outline" 
-                className="bg-transparent border-transparent hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="bg-transparent border border-black/70 hover:bg-primary hover:text-primary-foreground transition-colors relative overflow-hidden group"
               >
-                Login
+                <span className="relative z-10">Login</span>
+                <span className="absolute inset-0 bg-primary transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 origin-right"></span>
               </Button>
             </Link>
           </div>
           
-          {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
             <Button 
@@ -100,7 +94,6 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-lg border-t animate-slideDown">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
@@ -119,9 +112,10 @@ const Navbar = () => {
             <Link to="/login" className="mt-2">
               <Button 
                 variant="outline" 
-                className="w-full bg-transparent border-transparent hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="w-full bg-transparent border border-black/70 hover:bg-primary hover:text-primary-foreground transition-colors relative overflow-hidden group"
               >
-                Login
+                <span className="relative z-10">Login</span>
+                <span className="absolute inset-0 bg-primary transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 origin-right"></span>
               </Button>
             </Link>
           </nav>
