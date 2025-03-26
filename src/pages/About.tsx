@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Brain, Lightbulb, Microscope, Users, Zap } from "lucide-react";
@@ -167,7 +166,7 @@ const About = () => {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button variant="outline" className="text-blue-500 border-white hover:bg-white/10 px-8 py-6 text-base">
+                <Button variant="secondary" className="text-primary font-medium px-8 py-6 text-base">
                   Contact Us
                 </Button>
               </Link>
