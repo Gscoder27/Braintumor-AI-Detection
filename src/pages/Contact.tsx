@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, MessageSquare, Phone, MapPin, Send } from "lucide-react";
+import { Mail, MessageSquare, Phone, MapPin, Send, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -122,17 +122,22 @@ const ContactPage = () => {
                 <div className="pt-6">
                   <h3 className="font-medium text-lg mb-4">Connect With Us</h3>
                   <div className="flex space-x-4">
-                    {["twitter", "linkedin", "facebook", "instagram"].map((platform, index) => (
+                    {[
+                      { platform: "linkedin", icon: <Linkedin size={20} className="text-foreground" /> },
+                      { platform: "twitter", icon: <Twitter size={20} className="text-foreground" /> },
+                      { platform: "facebook", icon: <Facebook size={20} className="text-foreground" /> },
+                      { platform: "instagram", icon: <Instagram size={20} className="text-foreground" /> },
+                    ].map((social) => (
                       <a
-                        key={platform}
-                        href={`https://${platform}.com`}
+                        key={social.platform}
+                        href={`https://${social.platform}.com`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
-                        aria-label={`${platform} profile`}
+                        aria-label={`${social.platform} profile`}
                       >
-                        <span className="sr-only">{platform}</span>
-                        <div className="w-5 h-5 bg-primary/80 rounded-full"></div>
+                        <span className="sr-only">{social.platform}</span>
+                        {social.icon}
                       </a>
                     ))}
                   </div>
