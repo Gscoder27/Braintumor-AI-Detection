@@ -98,7 +98,7 @@ const About = () => {
               <div className="w-20 h-1 bg-primary mx-auto"></div>
             </div>
             
-            <div className="glass rounded-xl p-8 text-center">
+            <div className="bg-white dark:bg-background shadow-md rounded-xl p-8 text-center">
               <p className="text-xl text-foreground/80 italic">
                 "To harness the power of artificial intelligence in order to revolutionize brain tumor detection, making accurate diagnosis more accessible and efficient for healthcare providers worldwide."
               </p>
@@ -128,9 +128,9 @@ const About = () => {
               ].map((value, index) => (
                 <div 
                   key={index} 
-                  className="text-center glass rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
+                  className="text-center bg-white dark:bg-background shadow-md rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
                 >
-                  <div className="inline-flex items-center justify-center p-4 rounded-full bg-primary/10 mb-4">
+                  <div className="inline-flex items-center justify-center p-4 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-4">
                     {value.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-foreground">{value.title}</h3>
@@ -156,7 +156,7 @@ const About = () => {
             {teamMembers.map((member, index) => (
               <div 
                 key={index} 
-                className="glass rounded-xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
+                className="bg-white dark:bg-background shadow-md rounded-xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
               >
                 <img 
                   src={member.image} 
@@ -203,7 +203,7 @@ const About = () => {
                     "w-5/12 px-4",
                     index % 2 === 0 ? "text-right" : "text-left"
                   )}>
-                    <div className="glass rounded-xl p-6 inline-block">
+                    <div className="bg-white dark:bg-background shadow-md rounded-xl p-6 inline-block">
                       <div className="text-primary font-bold text-xl mb-2">{event.year}</div>
                       <h3 className="text-foreground font-bold text-lg mb-2">{event.title}</h3>
                       <p className="text-foreground/70">{event.description}</p>
