@@ -72,7 +72,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <Link to="/login">
-              <Button variant="glow">Login</Button>
+              <Button 
+                variant="outline" 
+                className="bg-transparent border-transparent hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                Login
+              </Button>
             </Link>
           </div>
           
@@ -112,7 +117,12 @@ const Navbar = () => {
               </Link>
             ))}
             <Link to="/login" className="mt-2">
-              <Button variant="glow" className="w-full">Login</Button>
+              <Button 
+                variant="outline" 
+                className="w-full bg-transparent border-transparent hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                Login
+              </Button>
             </Link>
           </nav>
         </div>
