@@ -78,7 +78,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium tracking-tight;
+    @apply font-medium tracking-tight text-foreground;
   }
   
   h1 {
@@ -91,6 +91,14 @@
   
   h3 {
     @apply text-2xl sm:text-3xl;
+  }
+  
+  p {
+    @apply text-foreground;
+  }
+  
+  a {
+    @apply text-foreground hover:text-primary transition-colors;
   }
   
   /* Glass morphism effect */
@@ -139,3 +147,4 @@
     @apply transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px];
   }
 }
+

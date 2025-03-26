@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className="bg-primary/10 p-2 rounded-full">
               <Brain className="h-6 w-6 text-primary" />
             </div>
-            <span className="font-bold text-xl">NeuroDetect</span>
+            <span className="font-bold text-xl text-foreground">NeuroDetect</span>
           </Link>
           
           {/* Desktop Navigation */}
