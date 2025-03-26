@@ -5,33 +5,12 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Brain, Download, FileText, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
+import { analyzeImage, AnalysisResult } from "@/utils/modelIntegration";
 
 interface ResultDisplayProps {
   imageUrl: string;
   onReset: () => void;
 }
-
-// Enhanced tumor types and characteristics for better accuracy
-const tumorTypes = {
-  meningioma: {
-    description: "Slow-growing tumor that forms on the membranes covering the brain and spinal cord",
-    characteristics: ["Well-defined borders", "Extra-axial location", "Homogeneous enhancement"],
-    severity: "moderate",
-    treatmentOptions: ["Surgery", "Radiation therapy", "Observation"]
-  },
-  glioblastoma: {
-    description: "Aggressive type of cancer that can occur in the brain or spinal cord",
-    characteristics: ["Irregular shape", "Necrotic core", "Surrounding edema"],
-    severity: "high",
-    treatmentOptions: ["Surgery", "Chemotherapy", "Radiation therapy"]
-  },
-  astrocytoma: {
-    description: "Tumor that can form in the brain or spinal cord, developing from star-shaped cells called astrocytes",
-    characteristics: ["Infiltrative growth", "Variable enhancement", "Cystic components"],
-    severity: "moderate to high",
-    treatmentOptions: ["Surgery", "Radiation therapy", "Chemotherapy"]
-  }
-};
 
 // Brain regions for more accurate location reporting
 const brainRegions = {
@@ -46,54 +25,56 @@ const brainRegions = {
 const ResultDisplay = ({ imageUrl, onReset }: ResultDisplayProps) => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [result, setResult] = useState<{
-    hasTumor: boolean;
-    confidence: number;
-    tumorType?: string;
-    location?: string;
-    size?: string;
-    details?: string[];
-  } | null>(null);
+  const [result, setResult] = useState<AnalysisResult | null>(null);
 
   useEffect(() => {
-    const analyzeImage = async () => {
-      // Simulate analysis with progress
-      for (let i = 0; i <= 100; i += 5) {
-        setProgress(i);
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-      
-      // In a real application, you would send the image to your ML model API
-      // For demonstration purposes, we're improving the accuracy by hardcoding the result
-      // based on the feedback that the uploaded MRI had a meningioma with 93% confidence
-      
-      const demoResult = {
-        hasTumor: true,
-        confidence: 93, // Setting to 93% as per user feedback
-        tumorType: "Meningioma", // Hardcoding for demonstration
-        location: "Frontal Lobe",
-        size: "3.2 cm",
-        details: [
-          "Well-defined borders",
-          "Extra-axial location",
-          "Homogeneous enhancement",
-          "No surrounding edema"
-        ]
-      };
-      
-      setResult(demoResult);
-      setLoading(false);
-      
-      // Alert user about critical finding
-      if (demoResult.confidence > 90) {
-        toast.error("Critical finding detected", {
-          description: "High confidence tumor detection requires immediate medical attention",
-          duration: 5000,
-        });
+    let isMounted = true;
+    
+    const performAnalysis = async () => {
+      try {
+        // Simulate progress during analysis
+        const progressInterval = setInterval(() => {
+          setProgress(prev => {
+            const newProgress = prev + 2;
+            return newProgress > 95 ? 95 : newProgress; // Cap at 95% until complete
+          });
+        }, 100);
+        
+        // Analyze the image using the model integration
+        const analysisResult = await analyzeImage(imageUrl);
+        
+        // Ensure component is still mounted before updating state
+        if (isMounted) {
+          clearInterval(progressInterval);
+          setProgress(100);
+          setResult(analysisResult);
+          setLoading(false);
+          
+          // Alert user about critical finding
+          if (analysisResult.confidence > 90) {
+            toast.error("Critical finding detected", {
+              description: "High confidence tumor detection requires immediate medical attention",
+              duration: 5000,
+            });
+          }
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error("Analysis error:", error);
+          setLoading(false);
+          toast.error("Analysis failed", {
+            description: "Unable to complete the analysis. Please try again."
+          });
+        }
       }
     };
     
-    analyzeImage();
+    performAnalysis();
+    
+    // Cleanup
+    return () => {
+      isMounted = false;
+    };
   }, [imageUrl]);
 
   const downloadReport = () => {
@@ -162,8 +143,8 @@ const ResultDisplay = ({ imageUrl, onReset }: ResultDisplayProps) => {
                     </div>
                   )}
                   
-                  <div className={`p-4 rounded-lg ${result?.hasTumor ? 'bg-destructive/10' : 'bg-green-100'}`}>
-                    <h3 className={`text-lg font-medium ${result?.hasTumor ? 'text-destructive' : 'text-green-700'}`}>
+                  <div className={`p-4 rounded-lg ${result?.hasTumor ? 'bg-destructive/10' : 'bg-green-100 dark:bg-green-900/30'}`}>
+                    <h3 className={`text-lg font-medium ${result?.hasTumor ? 'text-destructive' : 'text-green-700 dark:text-green-300'}`}>
                       {result?.hasTumor ? 'Tumor Detected' : 'No Tumor Detected'}
                     </h3>
                     <div className="flex items-center gap-2 mt-1">
