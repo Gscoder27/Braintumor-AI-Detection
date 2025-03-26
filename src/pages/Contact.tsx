@@ -4,12 +4,11 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { MessageSquare, Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
+import { Mail, MessageSquare, Phone, MapPin, Send, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
-const Contact = () => {
+const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,24 +16,22 @@ const Contact = () => {
     message: "",
   });
   
-  const [loading, setLoading] = useState(false);
-  
+  const [submitting, setSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success("Your message has been sent successfully!");
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1500));
       
       // Reset form
       setFormData({
@@ -43,192 +40,221 @@ const Contact = () => {
         subject: "",
         message: "",
       });
+      
+      toast.success("Message sent successfully! We'll get back to you soon.");
     } catch (error) {
-      toast.error("Failed to send message. Please try again.");
+      toast.error("Failed to send message. Please try again later.");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
-  
-  const faqs = [
+
+  const contactInfo = [
     {
-      question: "What is NeuroDetect?",
-      answer: "NeuroDetect is an AI-powered platform that helps medical professionals detect and analyze brain tumors from MRI scans using advanced deep learning algorithms.",
+      icon: <Phone size={24} />,
+      title: "Phone",
+      details: "+1 (555) 123-4567",
+      link: "tel:+15551234567",
     },
     {
-      question: "How accurate is the tumor detection?",
-      answer: "Our algorithm has been validated with a 94% accuracy rate in clinical trials, comparing favorably with expert radiologists. However, it is designed as a supportive tool for professionals, not a replacement for expert diagnosis.",
+      icon: <Mail size={24} />,
+      title: "Email",
+      details: "support@neurodetect.com",
+      link: "mailto:support@neurodetect.com",
     },
     {
-      question: "Is my patients' data secure?",
-      answer: "Absolutely. We prioritize data security and privacy. All uploads are encrypted, and we comply with HIPAA and GDPR requirements. We do not store MRI scans after analysis unless explicitly requested.",
+      icon: <MapPin size={24} />,
+      title: "Location",
+      details: "123 Innovation Drive, San Francisco, CA 94107",
+      link: "https://maps.google.com/?q=San+Francisco",
+    }
+  ];
+
+  const socialLinks = [
+    { 
+      platform: "linkedin", 
+      icon: <Linkedin size={20} className="text-foreground" />, 
+      label: "Follow us on LinkedIn",
+      url: "https://linkedin.com"
     },
-    {
-      question: "Can I integrate NeuroDetect with my hospital's systems?",
-      answer: "Yes, we offer API integration solutions that can work with most hospital management systems and PACS. Our team can provide technical support for custom integrations.",
+    { 
+      platform: "twitter", 
+      icon: <Twitter size={20} className="text-foreground" />, 
+      label: "Follow us on X", 
+      url: "https://x.com"
     },
-    {
-      question: "Do you offer training for medical staff?",
-      answer: "Yes, we provide comprehensive training materials and live sessions for medical professionals to help them make the most of our platform.",
+    { 
+      platform: "facebook", 
+      icon: <Facebook size={20} className="text-foreground" />, 
+      label: "Like us on Facebook",
+      url: "https://facebook.com" 
+    },
+    { 
+      platform: "instagram", 
+      icon: <Instagram size={20} className="text-foreground" />, 
+      label: "Follow us on Instagram",
+      url: "https://instagram.com" 
     },
   ];
-  
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950 dark:to-background pointer-events-none" />
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10" />
         
-        <div className="container px-4 mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
-              <span className="text-sm font-medium">Contact Us</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Get in Touch
-            </h1>
-            
-            <p className="text-lg text-foreground/70 mb-8">
-              Have questions about NeuroDetect? Our team is here to help you with anything you need.
+        <div className="container px-4 mx-auto">
+          <div className="max-w-3xl mx-auto text-center animate-slideDown">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">Contact Us</h1>
+            <p className="text-lg text-foreground/80 mb-8">
+              Have questions about our brain tumor detection platform? We're here to help! Reach out using any of the methods below.
             </p>
           </div>
         </div>
       </section>
       
-      {/* Contact Form & Info Section */}
-      <section className="py-16 bg-white dark:bg-background">
+      {/* Contact Info & Form Section */}
+      <section className="py-16 bg-white">
         <div className="container px-4 mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+              {/* Contact Info */}
+              <div className="lg:col-span-2 space-y-10">
+                <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+                
+                <div className="space-y-6">
+                  {contactInfo.map((item, index) => (
+                    <div 
+                      key={index} 
+                      className="flex items-start space-x-4 animate-slideUp"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="p-3 rounded-full bg-primary/10 text-primary">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-lg">{item.title}</h3>
+                        <a 
+                          href={item.link} 
+                          className="text-foreground/70 hover:text-primary transition-colors"
+                          target={item.title === "Location" ? "_blank" : undefined}
+                          rel={item.title === "Location" ? "noopener noreferrer" : undefined}
+                        >
+                          {item.details}
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="pt-6">
+                  <h3 className="font-medium text-lg mb-4">Connect With Us</h3>
+                  <div className="flex space-x-4">
+                    {socialLinks.map((social) => (
+                      <HoverCard key={social.platform}>
+                        <HoverCardTrigger asChild>
+                          <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-3 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-300 transform hover:scale-110"
+                            aria-label={`${social.platform} profile`}
+                          >
+                            <span className="sr-only">{social.platform}</span>
+                            {social.icon}
+                          </a>
+                        </HoverCardTrigger>
+                        <HoverCardContent className="w-auto p-2">
+                          <p className="text-sm">{social.label}</p>
+                        </HoverCardContent>
+                      </HoverCard>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
               {/* Contact Form */}
-              <div className="flex-1">
+              <div className="lg:col-span-3 animate-slideUp" style={{ animationDelay: "300ms" }}>
                 <div className="glass rounded-xl p-8">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Send Us a Message</h2>
+                  <div className="flex items-center mb-6">
+                    <MessageSquare size={24} className="text-primary mr-3" />
+                    <h2 className="text-2xl font-bold">Send Us a Message</h2>
+                  </div>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-foreground">Full Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="input-field"
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium">Full Name</label>
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="John Doe"
+                          className="input-field"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-medium">Email Address</label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder="john@example.com"
+                          className="input-field"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="input-field"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-foreground">Subject</Label>
+                      <label htmlFor="subject" className="text-sm font-medium">Subject</label>
                       <Input
                         id="subject"
                         name="subject"
+                        placeholder="How can we help you?"
+                        className="input-field"
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="input-field"
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-foreground">Message</Label>
+                      <label htmlFor="message" className="text-sm font-medium">Message</label>
                       <Textarea
                         id="message"
                         name="message"
+                        placeholder="Your message here..."
+                        className="input-field min-h-[120px] resize-y"
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="input-field min-h-[150px]"
                       />
                     </div>
                     
                     <Button 
                       type="submit" 
-                      className="w-full btn-primary" 
-                      disabled={loading}
+                      className="btn-primary w-full" 
+                      disabled={submitting}
                     >
-                      {loading ? (
-                        <div className="flex items-center">
+                      {submitting ? (
+                        <div className="flex items-center justify-center">
                           <div className="h-4 w-4 rounded-full border-2 border-t-transparent border-white animate-spin mr-2" />
-                          Sending Message...
+                          Sending...
                         </div>
                       ) : (
-                        "Send Message"
+                        <div className="flex items-center justify-center">
+                          <Send size={16} className="mr-2" />
+                          Send Message
+                        </div>
                       )}
                     </Button>
                   </form>
-                </div>
-              </div>
-              
-              {/* Contact Info */}
-              <div className="lg:w-96">
-                <div className="glass rounded-xl p-8 mb-8">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Contact Information</h2>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start">
-                      <div className="p-2 rounded-full bg-primary/10 mr-4">
-                        <MapPin size={20} className="text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-foreground">Address</h3>
-                        <p className="text-foreground/70">123 Medical Center Drive<br />San Francisco, CA 94143</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="p-2 rounded-full bg-primary/10 mr-4">
-                        <Mail size={20} className="text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-foreground">Email</h3>
-                        <p className="text-foreground/70">info@neurodetect.com<br />support@neurodetect.com</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="p-2 rounded-full bg-primary/10 mr-4">
-                        <Phone size={20} className="text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-foreground">Phone</h3>
-                        <p className="text-foreground/70">+1 (415) 555-0123<br />+1 (415) 555-0124</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="glass rounded-xl p-8">
-                  <h2 className="text-xl font-bold mb-4 text-foreground">Office Hours</h2>
-                  
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-foreground">Monday - Friday:</span>
-                      <span className="text-foreground/70">9:00 AM - 5:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-foreground">Saturday:</span>
-                      <span className="text-foreground/70">10:00 AM - 2:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-foreground">Sunday:</span>
-                      <span className="text-foreground/70">Closed</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -237,41 +263,39 @@ const Contact = () => {
       </section>
       
       {/* FAQ Section */}
-      <section className="py-16 bg-secondary/30 dark:bg-secondary/10">
+      <section className="py-16 bg-secondary/30">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 mb-4">
-                <MessageSquare size={24} className="text-primary" />
-              </div>
-              <h2 className="text-3xl font-bold mb-4 text-foreground">Frequently Asked Questions</h2>
-              <p className="text-lg text-foreground/70">
-                Find answers to common questions about NeuroDetect
-              </p>
-            </div>
+            <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
             
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem 
+            <div className="space-y-6">
+              {[
+                {
+                  question: "How accurate is your brain tumor detection?",
+                  answer: "Our deep learning model has achieved an accuracy rate of over 90% in detecting the presence of brain tumors from MRI scans. However, it should be used as a supportive tool for healthcare professionals, not as a standalone diagnostic tool."
+                },
+                {
+                  question: "What types of brain tumors can your system detect?",
+                  answer: "Our system can detect various types of brain tumors including gliomas, meningiomas, pituitary tumors, and other common brain tumors. The system continues to improve as we train it with more diverse datasets."
+                },
+                {
+                  question: "Is my medical data secure on your platform?",
+                  answer: "Absolutely. We prioritize the security and privacy of your medical data. All uploads are encrypted and we comply with HIPAA and other relevant healthcare data privacy regulations. We do not share your data with third parties without explicit consent."
+                },
+                {
+                  question: "How long does it take to get results?",
+                  answer: "Our advanced deep learning algorithms typically process an MRI scan in just a few seconds. The entire process from upload to receiving results usually takes less than a minute, depending on your internet speed."
+                },
+              ].map((faq, index) => (
+                <div 
                   key={index} 
-                  value={`item-${index}`}
-                  className="glass rounded-xl mb-4 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  className="glass rounded-xl p-6 animate-slideUp transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <AccordionTrigger className="px-6 py-4 text-left text-foreground hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4 text-foreground/70">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
+                  <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
+                  <p className="text-foreground/70">{faq.answer}</p>
+                </div>
               ))}
-            </Accordion>
-            
-            <div className="text-center mt-12">
-              <p className="text-foreground/70 mb-4">Still have questions?</p>
-              <Button className="btn-primary">
-                Contact Support
-              </Button>
             </div>
           </div>
         </div>
@@ -280,4 +304,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;
