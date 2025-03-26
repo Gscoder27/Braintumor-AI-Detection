@@ -1,11 +1,10 @@
+
 import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 import { Brain, FileUp, Image, X } from "lucide-react";
-import { uploadScanImage } from "@/lib/supabase";
-import { getCurrentUser } from "@/lib/supabase";
 
 interface FileUploadProps {
   onUploadComplete: (imageUrl: string) => void;
@@ -44,11 +43,13 @@ const FileUpload = ({ onUploadComplete }: FileUploadProps) => {
   };
 
   const handleFile = (uploadedFile: File) => {
+    // Check if file is an image
     if (!uploadedFile.type.match('image.*')) {
       toast.error("Please upload an image file (JPEG, PNG, etc.)");
       return;
     }
     
+    // Check file size (10MB max)
     if (uploadedFile.size > 10 * 1024 * 1024) {
       toast.error("File size must be less than 10MB");
       return;
@@ -56,6 +57,7 @@ const FileUpload = ({ onUploadComplete }: FileUploadProps) => {
     
     setFile(uploadedFile);
     
+    // Create preview
     const reader = new FileReader();
     reader.onload = () => {
       setPreview(reader.result as string);
@@ -77,35 +79,26 @@ const FileUpload = ({ onUploadComplete }: FileUploadProps) => {
     setUploading(true);
     
     try {
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          const newProgress = prev + 5;
-          return newProgress > 95 ? 95 : newProgress;
-        });
-      }, 100);
-      
-      const { user, error: userError } = await getCurrentUser();
-      
-      if (userError || !user) {
-        throw new Error("You must be logged in to upload files");
+      // Simulate upload with progress
+      for (let i = 0; i <= 100; i += 5) {
+        setProgress(i);
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
       
-      const { publicUrl, error } = await uploadScanImage(user.id, file);
+      // In a real application, you would upload the file to your server here
+      // const formData = new FormData();
+      // formData.append('file', file);
+      // const response = await fetch('/api/upload', { method: 'POST', body: formData });
+      // const data = await response.json();
       
-      if (error) {
-        throw error;
-      }
-      
-      clearInterval(progressInterval);
-      setProgress(100);
-      
-      onUploadComplete(publicUrl);
+      // For now, just pass the preview URL
+      onUploadComplete(preview!);
       toast.success("MRI scan uploaded successfully");
-    } catch (error: any) {
-      console.error("Upload error:", error);
-      toast.error(error.message || "Upload failed. Please try again.");
+    } catch (error) {
+      toast.error("Upload failed. Please try again.");
     } finally {
       setUploading(false);
+      setProgress(0);
     }
   };
 

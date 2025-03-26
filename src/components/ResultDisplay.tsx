@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Brain, Download, FileText, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 import { analyzeImage, AnalysisResult } from "@/utils/modelIntegration";
-import { saveScanRecord, getCurrentUser } from "@/lib/supabase";
 
 interface ResultDisplayProps {
   imageUrl: string;
@@ -27,7 +26,6 @@ const ResultDisplay = ({ imageUrl, onReset }: ResultDisplayProps) => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<AnalysisResult | null>(null);
-  const [recordSaved, setRecordSaved] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -52,13 +50,6 @@ const ResultDisplay = ({ imageUrl, onReset }: ResultDisplayProps) => {
           setResult(analysisResult);
           setLoading(false);
           
-          // Save the scan result to the database
-          const { user } = await getCurrentUser();
-          if (user) {
-            await saveScanRecord(user.id, imageUrl, analysisResult);
-            setRecordSaved(true);
-          }
-          
           // Alert user about critical finding
           if (analysisResult.confidence > 90) {
             toast.error("Critical finding detected", {
@@ -67,11 +58,13 @@ const ResultDisplay = ({ imageUrl, onReset }: ResultDisplayProps) => {
             });
           }
         }
-      } catch (error: any) {
+      } catch (error) {
         if (isMounted) {
           console.error("Analysis error:", error);
           setLoading(false);
-          toast.error(error.message || "Analysis failed. Please try again.");
+          toast.error("Analysis failed", {
+            description: "Unable to complete the analysis. Please try again."
+          });
         }
       }
     };
