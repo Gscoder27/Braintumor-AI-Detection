@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, MessageSquare, Phone, MapPin, Send, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -69,6 +69,33 @@ const ContactPage = () => {
     }
   ];
 
+  const socialLinks = [
+    { 
+      platform: "linkedin", 
+      icon: <Linkedin size={20} className="text-foreground" />, 
+      label: "Follow us on LinkedIn",
+      url: "https://linkedin.com"
+    },
+    { 
+      platform: "twitter", 
+      icon: <Twitter size={20} className="text-foreground" />, 
+      label: "Follow us on X", 
+      url: "https://x.com"
+    },
+    { 
+      platform: "facebook", 
+      icon: <Facebook size={20} className="text-foreground" />, 
+      label: "Like us on Facebook",
+      url: "https://facebook.com" 
+    },
+    { 
+      platform: "instagram", 
+      icon: <Instagram size={20} className="text-foreground" />, 
+      label: "Follow us on Instagram",
+      url: "https://instagram.com" 
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -122,23 +149,24 @@ const ContactPage = () => {
                 <div className="pt-6">
                   <h3 className="font-medium text-lg mb-4">Connect With Us</h3>
                   <div className="flex space-x-4">
-                    {[
-                      { platform: "linkedin", icon: <Linkedin size={20} className="text-foreground" /> },
-                      { platform: "twitter", icon: <Twitter size={20} className="text-foreground" /> },
-                      { platform: "facebook", icon: <Facebook size={20} className="text-foreground" /> },
-                      { platform: "instagram", icon: <Instagram size={20} className="text-foreground" /> },
-                    ].map((social) => (
-                      <a
-                        key={social.platform}
-                        href={`https://${social.platform}.com`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
-                        aria-label={`${social.platform} profile`}
-                      >
-                        <span className="sr-only">{social.platform}</span>
-                        {social.icon}
-                      </a>
+                    {socialLinks.map((social) => (
+                      <HoverCard key={social.platform}>
+                        <HoverCardTrigger asChild>
+                          <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-3 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-300 transform hover:scale-110"
+                            aria-label={`${social.platform} profile`}
+                          >
+                            <span className="sr-only">{social.platform}</span>
+                            {social.icon}
+                          </a>
+                        </HoverCardTrigger>
+                        <HoverCardContent className="w-auto p-2">
+                          <p className="text-sm">{social.label}</p>
+                        </HoverCardContent>
+                      </HoverCard>
                     ))}
                   </div>
                 </div>
