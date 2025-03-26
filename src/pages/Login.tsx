@@ -8,14 +8,14 @@ const Login = () => {
   return (
     <Layout>
       <div className="min-h-[80vh] flex flex-col items-center justify-center py-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950 dark:to-background -z-10" />
         
         <div className="w-full max-w-md px-4 mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center">
               <Brain size={36} className="text-primary animate-pulse" />
             </div>
-            <h1 className="text-3xl font-bold mt-4">NeuroDetect</h1>
+            <h1 className="text-3xl font-bold mt-4 text-foreground">NeuroDetect</h1>
             <p className="text-foreground/70 mt-2">
               Access your account to use our brain tumor detection tool
             </p>

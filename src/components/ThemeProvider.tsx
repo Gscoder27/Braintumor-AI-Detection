@@ -24,7 +24,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = "vite-ui-theme",
+  storageKey = "neurodetect-theme",
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
@@ -59,6 +59,10 @@ export function ThemeProvider({
       root.classList.add(mediaQuery.matches ? "dark" : "light");
     };
     
+    // Apply initial state
+    handleChange();
+    
+    // Listen for changes
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
