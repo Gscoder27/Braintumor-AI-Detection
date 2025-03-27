@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -71,7 +72,7 @@ const Navbar = () => {
                 className="bg-transparent border border-black/70 hover:bg-primary hover:text-primary-foreground transition-colors relative overflow-hidden group"
               >
                 <span className="relative z-10">Login</span>
-                <span className="absolute inset-0 bg-primary transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 origin-right"></span>
+                <span className="absolute inset-0 bg-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 origin-bottom"></span>
               </Button>
             </Link>
           </div>
@@ -115,7 +116,7 @@ const Navbar = () => {
                 className="w-full bg-transparent border border-black/70 hover:bg-primary hover:text-primary-foreground transition-colors relative overflow-hidden group"
               >
                 <span className="relative z-10">Login</span>
-                <span className="absolute inset-0 bg-primary transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 origin-right"></span>
+                <span className="absolute inset-0 bg-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 origin-bottom"></span>
               </Button>
             </Link>
           </nav>
