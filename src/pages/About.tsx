@@ -9,7 +9,7 @@ const About = () => {
     <Layout>
       {/* Hero Section */}
       <section className="py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-background/20 dark:to-background -z-10" />
         
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center animate-slideDown">
@@ -22,21 +22,21 @@ const About = () => {
       </section>
       
       {/* Mission Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-background">
         <div className="container px-4 mx-auto">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-3">Our Mission</h2>
+              <h2 className="text-3xl font-bold mb-3 text-foreground">Our Mission</h2>
               <div className="w-24 h-1 bg-primary mx-auto"></div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-16 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-              <p className="text-xl text-center italic font-medium mb-6">
+              <p className="text-xl text-center italic font-medium mb-6 text-foreground">
                 "To harness the power of artificial intelligence in order to revolutionize brain tumor detection,
                 making accurate diagnosis more accessible and efficient for healthcare providers worldwide."
               </p>
               <div className="flex justify-center">
-                <div className="p-3 rounded-full bg-blue-100">
+                <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/50">
                   <Brain size={28} className="text-primary" />
                 </div>
               </div>
@@ -49,10 +49,10 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {/* Innovation Card */}
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-gray-700">
-                <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <div className="w-20 h-20 mx-auto bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50">
                   <Brain size={36} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Innovation</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">Innovation</h3>
                 <p className="text-foreground/70">
                   Pushing the boundaries of what's possible with medical AI technology.
                 </p>
@@ -60,10 +60,10 @@ const About = () => {
               
               {/* Excellence Card */}
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-gray-700">
-                <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <div className="w-20 h-20 mx-auto bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50">
                   <Award size={36} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Excellence</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">Excellence</h3>
                 <p className="text-foreground/70">
                   Committed to the highest standards in healthcare technology.
                 </p>
@@ -71,10 +71,10 @@ const About = () => {
               
               {/* Impact Card */}
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-gray-700">
-                <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <div className="w-20 h-20 mx-auto bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50">
                   <LineChart size={36} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Impact</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">Impact</h3>
                 <p className="text-foreground/70">
                   Making a meaningful difference in patient outcomes worldwide.
                 </p>
@@ -93,16 +93,16 @@ const About = () => {
       </section>
       
       {/* Technology Section */}
-      <section className="py-16 bg-secondary/30">
+      <section className="py-16 bg-secondary/30 dark:bg-secondary/10">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center justify-center mb-8">
-              <div className="p-3 rounded-full bg-primary/10">
+              <div className="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
                 <Brain size={28} className="text-primary" />
               </div>
             </div>
             
-            <h2 className="text-3xl font-bold text-center mb-6">Our Technology</h2>
+            <h2 className="text-3xl font-bold text-center mb-6 text-foreground">Our Technology</h2>
             
             <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
               NeuroDetect employs state-of-the-art deep learning models specifically trained on thousands of MRI scans to detect various types of brain tumors.
@@ -110,28 +110,28 @@ const About = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="glass rounded-xl p-6 animate-slideUp transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-white/40 dark:hover:bg-gray-800/60">
-                <h3 className="text-xl font-semibold mb-3">Convolutional Neural Networks</h3>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">Convolutional Neural Networks</h3>
                 <p className="text-foreground/70">
                   Our platform utilizes specialized CNN architectures optimized for medical imaging analysis, allowing precise feature extraction from MRI scans.
                 </p>
               </div>
               
               <div className="glass rounded-xl p-6 animate-slideUp transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-white/40 dark:hover:bg-gray-800/60" style={{ animationDelay: "100ms" }}>
-                <h3 className="text-xl font-semibold mb-3">Transfer Learning</h3>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">Transfer Learning</h3>
                 <p className="text-foreground/70">
                   We leverage pre-trained models that have been fine-tuned on medical imaging datasets to achieve high accuracy with less training data.
                 </p>
               </div>
               
               <div className="glass rounded-xl p-6 animate-slideUp transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-white/40 dark:hover:bg-gray-800/60" style={{ animationDelay: "200ms" }}>
-                <h3 className="text-xl font-semibold mb-3">Image Segmentation</h3>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">Image Segmentation</h3>
                 <p className="text-foreground/70">
                   Advanced segmentation algorithms help identify tumor boundaries and provide detailed location information.
                 </p>
               </div>
               
               <div className="glass rounded-xl p-6 animate-slideUp transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-white/40 dark:hover:bg-gray-800/60" style={{ animationDelay: "300ms" }}>
-                <h3 className="text-xl font-semibold mb-3">Continuous Learning</h3>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">Continuous Learning</h3>
                 <p className="text-foreground/70">
                   Our models continuously improve through regular retraining with new validated data to increase accuracy over time.
                 </p>
@@ -146,16 +146,16 @@ const About = () => {
       </section>
       
       {/* Team Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-background">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center justify-center mb-8">
-              <div className="p-3 rounded-full bg-primary/10">
+              <div className="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
                 <Users size={28} className="text-primary" />
               </div>
             </div>
             
-            <h2 className="text-3xl font-bold text-center mb-10">Our Team</h2>
+            <h2 className="text-3xl font-bold text-center mb-10 text-foreground">Our Team</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
@@ -180,12 +180,12 @@ const About = () => {
                   className="text-center animate-slideUp transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-gray-700 p-6 rounded-xl"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-32 h-32 rounded-full bg-secondary/50 mx-auto mb-4 flex items-center justify-center transition-all duration-300 hover:bg-blue-100">
+                  <div className="w-32 h-32 rounded-full bg-secondary/50 dark:bg-secondary/30 mx-auto mb-4 flex items-center justify-center transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/30">
                     <span className="text-3xl font-bold text-primary">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+                  <h3 className="text-xl font-semibold mb-1 text-foreground">{member.name}</h3>
                   <p className="text-primary font-medium mb-2">{member.role}</p>
                   <p className="text-foreground/70">{member.bio}</p>
                 </div>
