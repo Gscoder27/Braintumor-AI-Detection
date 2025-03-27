@@ -33,7 +33,7 @@ const Index = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-primary/5 dark:to-background pointer-events-none" />
         
         <div className="container px-4 py-20 md:py-32 mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center animate-slideDown">
@@ -42,12 +42,12 @@ const Index = () => {
               <span className="text-sm font-medium">AI-Powered Brain Tumor Detection</span>
             </div>
             
-            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
               Advanced Brain Tumor Detection <br />
               <span className="text-primary">Using Deep Learning</span>
             </h1>
             
-            <p className="mb-8 text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="mb-8 text-lg text-foreground max-w-2xl mx-auto">
               Our platform uses state-of-the-art machine learning algorithms to detect brain tumors from MRI scans with high accuracy, helping medical professionals make faster and more accurate diagnoses.
             </p>
             
@@ -72,7 +72,7 @@ const Index = () => {
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 1200 120" 
             preserveAspectRatio="none"
-            className="w-full h-20 text-white fill-current"
+            className="w-full h-20 text-white dark:text-background fill-current"
           >
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V100.56C57.1,98.08,181.51,81.77,321.39,56.44Z" />
           </svg>
@@ -80,11 +80,11 @@ const Index = () => {
       </section>
       
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-background">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
-            <p className="text-lg text-foreground/70">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">How It Works</h2>
+            <p className="text-lg text-foreground">
               Our platform combines medical expertise with advanced deep learning technology
             </p>
           </div>
@@ -102,8 +102,8 @@ const Index = () => {
                 <div className="p-4 mb-4 rounded-lg bg-primary/10 inline-block">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-foreground/70">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                <p className="text-foreground">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -128,11 +128,11 @@ const Index = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30 dark:bg-secondary/10">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Trusted by Medical Professionals</h2>
-            <p className="text-lg text-foreground/70">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">Trusted by Medical Professionals</h2>
+            <p className="text-lg text-foreground">
               See what doctors and radiologists are saying about our platform
             </p>
           </div>
@@ -164,9 +164,9 @@ const Index = () => {
                 <svg className="h-8 w-8 text-primary/40 mb-4" fill="currentColor" viewBox="0 0 32 32">
                   <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                 </svg>
-                <p className="text-lg mb-4">{testimonial.quote}</p>
+                <p className="text-lg mb-4 text-foreground">{testimonial.quote}</p>
                 <div>
-                  <p className="font-medium">{testimonial.author}</p>
+                  <p className="font-medium text-foreground">{testimonial.author}</p>
                   <p className="text-sm text-foreground/70">{testimonial.role}</p>
                 </div>
               </div>
