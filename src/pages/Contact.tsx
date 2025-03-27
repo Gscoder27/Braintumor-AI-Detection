@@ -101,7 +101,7 @@ const ContactPage = () => {
     <Layout>
       {/* Hero Section */}
       <section className="py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-background -z-10" />
         
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center animate-slideDown">
@@ -114,13 +114,13 @@ const ContactPage = () => {
       </section>
       
       {/* Contact Info & Form Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-background">
         <div className="container px-4 mx-auto">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
               {/* Contact Info */}
               <div className="lg:col-span-2 space-y-10">
-                <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">Get in Touch</h2>
                 
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
@@ -133,7 +133,7 @@ const ContactPage = () => {
                         {item.icon}
                       </div>
                       <div>
-                        <h3 className="font-medium text-lg">{item.title}</h3>
+                        <h3 className="font-medium text-lg text-foreground">{item.title}</h3>
                         <a 
                           href={item.link} 
                           className="text-foreground/70 hover:text-primary transition-colors"
@@ -148,7 +148,7 @@ const ContactPage = () => {
                 </div>
                 
                 <div className="pt-6">
-                  <h3 className="font-medium text-lg mb-4">Connect With Us</h3>
+                  <h3 className="font-medium text-lg mb-4 text-foreground">Connect With Us</h3>
                   <div className="flex space-x-4">
                     {socialLinks.map((social) => (
                       <HoverCard key={social.platform}>
@@ -178,13 +178,13 @@ const ContactPage = () => {
                 <div className="glass rounded-xl p-8">
                   <div className="flex items-center mb-6">
                     <MessageSquare size={24} className="text-primary mr-3" />
-                    <h2 className="text-2xl font-bold">Send Us a Message</h2>
+                    <h2 className="text-2xl font-bold text-foreground">Send Us a Message</h2>
                   </div>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium">Full Name</label>
+                        <label htmlFor="name" className="text-sm font-medium text-foreground">Full Name</label>
                         <Input
                           id="name"
                           name="name"
@@ -197,7 +197,7 @@ const ContactPage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium">Email Address</label>
+                        <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address</label>
                         <Input
                           id="email"
                           name="email"
@@ -212,7 +212,7 @@ const ContactPage = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium">Subject</label>
+                      <label htmlFor="subject" className="text-sm font-medium text-foreground">Subject</label>
                       <Input
                         id="subject"
                         name="subject"
@@ -225,7 +225,7 @@ const ContactPage = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium">Message</label>
+                      <label htmlFor="message" className="text-sm font-medium text-foreground">Message</label>
                       <Textarea
                         id="message"
                         name="message"
@@ -263,10 +263,10 @@ const ContactPage = () => {
       </section>
       
       {/* FAQ Section */}
-      <section className="py-16 bg-secondary/30">
+      <section className="py-16 bg-secondary/30 dark:bg-secondary/10">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-center mb-10 text-foreground">Frequently Asked Questions</h2>
             
             <div className="space-y-6">
               {[
@@ -292,7 +292,7 @@ const ContactPage = () => {
                   className="glass rounded-xl p-6 animate-slideUp transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">{faq.question}</h3>
                   <p className="text-foreground/70">{faq.answer}</p>
                 </div>
               ))}
