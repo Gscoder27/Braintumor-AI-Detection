@@ -1,5 +1,5 @@
 
-# Welcome to your Lovable project
+# Welcome to My AI Brain tumor detection project
 
 ## Project info
 
@@ -11,7 +11,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and start prompting.
+Simply visit the (https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -63,15 +63,15 @@ This project is built with:
 
 ## How can I deploy this project?
 
-### Deploy with Lovable
+### Deploy with vercel
 
-Simply open [Lovable](https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and click on Share -> Publish.
+Simply open (https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and click on Share -> Publish.
 
 ### Deploy to GitHub Pages
 
 To deploy this project to GitHub Pages:
 
-1. Connect your Lovable project to GitHub (use the GitHub button in Lovable interface)
+1. Connect your vercel project to GitHub 
 2. In your GitHub repository, go to Settings > Pages
 3. Set the source to "GitHub Actions"
 4. Add a GitHub Actions workflow file for deploying a Vite app (example below)
