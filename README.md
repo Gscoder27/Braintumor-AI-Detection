@@ -1,9 +1,18 @@
-
-# Welcome to My AI Brain tumor detection project
+# Welcome to your Lovable project
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7
+
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -43,7 +52,7 @@ npm run dev
 
 ## What technologies are used for this project?
 
-This project is built with:
+This project is built with .
 
 - Vite
 - TypeScript
@@ -53,66 +62,7 @@ This project is built with:
 
 ## How can I deploy this project?
 
-### Deploy with vercel
-
-Simply open (https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and click on Share -> Publish.
-
-### Deploy to GitHub Pages
-
-To deploy this project to GitHub Pages:
-
-1. Connect your vercel project to GitHub 
-2. In your GitHub repository, go to Settings > Pages
-3. Set the source to "GitHub Actions"
-4. Add a GitHub Actions workflow file for deploying a Vite app (example below)
-
-Example GitHub Actions workflow file (`.github/workflows/deploy.yml`):
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './dist'
-          
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-```
-
-5. Commit this file to your repository
-6. GitHub Actions will automatically build and deploy your site
+Simply open [Lovable](https://lovable.dev/projects/4041c8b5-d299-41fd-a42a-e1431e95f8d7) and click on Share -> Publish.
 
 ## I want to use a custom domain - is that possible?
 
